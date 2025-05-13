@@ -5,7 +5,6 @@ import 'package:modernschool/view/utils/constants/font_style.dart';
 import 'package:modernschool/view/utils/constants/responsive.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../models/Reports.dart';
 import '../../../../models/emails.dart';
 
 class EmailItem extends StatelessWidget {

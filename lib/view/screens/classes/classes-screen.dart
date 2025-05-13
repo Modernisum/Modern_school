@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multiselect/multiselect.dart';
-import 'package:modernschool/models/classes.dart';
 import 'package:modernschool/view/screens/classes/classes-controller.dart';
 import 'package:modernschool/view/utils/constants/constant.dart';
 import 'package:modernschool/view/utils/constants/font_style.dart';
 import 'package:modernschool/view/utils/widgets/add-button.dart';
 import 'package:modernschool/view/utils/widgets/items/class-item.dart';
-import 'package:modernschool/view/utils/widgets/delete-button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modernschool/view/utils/constants/responsive.dart';
 import 'package:modernschool/view/utils/widgets/header.dart';
-import 'package:modernschool/view/screens/main-screen/main-screen.dart';
 
 class ClassesScreen extends StatelessWidget {
   const ClassesScreen({super.key});

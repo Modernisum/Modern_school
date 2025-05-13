@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modernschool/models/announcements.dart';
 import 'package:modernschool/models/schedule.dart';
 import 'package:modernschool/view/utils/constants/constant.dart';
 import 'package:modernschool/view/utils/constants/font_style.dart';

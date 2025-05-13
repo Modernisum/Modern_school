@@ -10,13 +10,15 @@ import 'package:modernschool/view/utils/constants/my_icons.dart';
 import 'package:modernschool/view/utils/widgets/bordered_button.dart';
 import 'package:modernschool/view/utils/widgets/cliackable_text.dart';
 import 'package:modernschool/view/utils/widgets/custom_button.dart';
+import 'forgot_password_screen.dart';
 
 import '../../utils/constants/font_style.dart';
 import '../../utils/constants/utils.dart';
 import '../../utils/widgets/custom_formfield.dart';
+import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -25,58 +27,64 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final LoginController controller = Get.find();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  bool isForgotPassword = false;
+  bool _isLoading = false;
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  Future<void> login() async {
+    if (!_validateInputs()) return;
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  void Login() async {
-    String res = "Some error occurred";
+    setState(() => _isLoading = true);
 
     try {
       final querySnapshot = await _firestore.collection('admin').get();
       bool isValidUser = querySnapshot.docs.any((doc) =>
-          doc['email'] == controller.emailController.text &&
+          doc['email'] == controller.emailController.text.trim() &&
           doc['password'] == controller.passwordController.text);
 
       if (isValidUser) {
-        res = "success";
+        Get.offAllNamed(AppPages.mainScreen);
       } else {
-        res = "Invalid email or password";
+        showSnackBar("Invalid email or password", context);
       }
     } catch (err) {
-      res = "Error: ${err.toString()}";
+      showSnackBar("An error occurred. Please try again.", context);
+    } finally {
+      setState(() => _isLoading = false);
     }
+  }
 
-    if (res == "success") {
-      Get.toNamed(AppPages.mainScreen);
-    } else {
-      showSnackBar(res, context);
+  bool _validateInputs() {
+    if (controller.emailController.text.trim().isEmpty) {
+      showSnackBar("Please enter your email", context);
+      return false;
     }
+    if (!GetUtils.isEmail(controller.emailController.text.trim())) {
+      showSnackBar("Please enter a valid email", context);
+      return false;
+    }
+    if (controller.passwordController.text.isEmpty) {
+      showSnackBar("Please enter your password", context);
+      return false;
+    }
+    if (controller.passwordController.text.length < 6) {
+      showSnackBar("Password must be at least 6 characters", context);
+      return false;
+    }
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    Pics pics = Pics();
-    final _formKey = GlobalKey<FormState>();
-
     return Scaffold(
       body: Container(
-        height: size.height,
-        width: size.width,
+        height: 1.sh,
+        width: 1.sw,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/background2.jpg"),
                 fit: BoxFit.cover)),
-        child: SingleChildScrollView(
+        child: Container(
+          height: 0.6.sh,
+          width: 0.6.sw,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,220 +96,110 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: 50.h,
-                      ),
-                      Stack(
-                        children: [
-                          Visibility(
-                            visible: isForgotPassword,
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 550.w,
-                                minWidth: 450.w,
-                                maxHeight: 700.h,
-                              ),
-                              padding: EdgeInsets.all(50.h),
+                      SizedBox(height: 50.h),
+                      Container(
+                        constraints: BoxConstraints(
+                          maxWidth: 0.8.sw, // Adjusts to 80% of screen width
+                          minWidth: 0.6.sw, // Adjusts to 60% of screen width
+                          maxHeight: 0.9.sh, // Adjusts to 90% of screen height
+                        ),
+                        padding: EdgeInsets.all(50.h),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20.r),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 30.w, vertical: 15.h),
                               decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20.r),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    spreadRadius: 5,
-                                    blurRadius: 7,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                                color: Colors.white.withOpacity(0.9),
+                                borderRadius: BorderRadius.circular(15.r),
                               ),
                               child: Column(
-                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        'Modern School',
-                                        style: redHatBoldStyle(
-                                            color: purple,
-                                            fontSize: size.width / 25),
-                                      ),
-                                      SizedBox(height: 5.h),
-                                      Text(
-                                        'Enjoy Managing Your School',
-                                        style: redHatMediumStyle(
-                                            color: lightPurple,
-                                            fontSize: size.width / 60),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 40.h),
                                   Text(
-                                    'Forgot Password',
+                                    'Modern School',
                                     style: redHatBoldStyle(
-                                        color: purple,
-                                        fontSize: size.width / 29.2),
+                                        color: purple, fontSize: 24.sp),
                                   ),
-                                  SizedBox(height: 20.h),
-                                  customFormField(
-                                    controller: controller.emailController,
-                                    label: 'Email',
-                                    prefix: Icons.email,
-                                    onChange: (String val) {},
-                                    type: TextInputType.emailAddress,
-                                    validate: (String? value) {
-                                      if (value!.isEmpty) {
-                                        return 'email must not be empty';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                  SizedBox(height: 20.h),
-                                  CustomButton(
-                                    press: () {
-                                      print('Reset Password');
-                                    },
-                                    height: 50.h,
-                                    width: size.width / 2,
-                                    radius: 20.r,
-                                    text: 'Reset Password',
-                                  ),
-                                  SizedBox(height: 20.h),
-                                  ClicableText(
-                                    text: 'Back to Login',
-                                    style: sfRegularStyle(
-                                        color: purple, fontSize: 20.sp),
-                                    function: () {
-                                      setState(() {
-                                        isForgotPassword = false;
-                                      });
-                                    },
+                                  SizedBox(height: 5.h),
+                                  Text(
+                                    'Enjoy Managing Your School',
+                                    style: redHatMediumStyle(
+                                        color: lightPurple, fontSize: 16.sp),
                                   ),
                                 ],
                               ),
                             ),
-                          ),
-                          Visibility(
-                            visible: !isForgotPassword,
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 550.w,
-                                minWidth: 450.w,
-                                maxHeight: 1500.h,
-                              ),
-                              padding: EdgeInsets.all(50.h),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20.r),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    spreadRadius: 5,
-                                    blurRadius: 7,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 30.w, vertical: 15.h),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.9),
-                                      borderRadius: BorderRadius.circular(15.r),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.2),
-                                          spreadRadius: 2,
-                                          blurRadius: 5,
-                                          offset: Offset(0, 2),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          'Modern School',
-                                          style: redHatBoldStyle(
-                                              color: purple,
-                                              fontSize: size.width / 25),
-                                        ),
-                                        SizedBox(height: 5.h),
-                                        Text(
-                                          'Enjoy Managing Your School',
-                                          style: redHatMediumStyle(
-                                              color: lightPurple,
-                                              fontSize: size.width / 60),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 40.h),
-                                  customFormField(
-                                    controller: controller.emailController,
-                                    label: 'Email',
-                                    prefix: Icons.email,
-                                    onChange: (String val) {},
-                                    type: TextInputType.emailAddress,
-                                    validate: (String? value) {
-                                      if (value!.isEmpty) {
-                                        return 'email must not be empty';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                  SizedBox(height: 52.h),
-                                  customFormField(
-                                    controller: controller.passwordController,
-                                    label: 'Password',
-                                    prefix: Icons.lock,
-                                    onChange: (String val) {},
-                                    suffix: controller.isPassword.value
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    isPassword: controller.isPassword.value,
-                                    suffixPressed: () {
-                                      controller.showPassword();
-                                    },
-                                    type: TextInputType.visiblePassword,
-                                    validate: (String? value) {
-                                      if (value!.isEmpty) {
-                                        return 'password is too short';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                  SizedBox(height: 32.h),
-                                  Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: ClicableText(
-                                      text: 'Forgot Password?',
-                                      style: sfRegularStyle(
-                                          color: purple, fontSize: 20.sp),
-                                      function: () {
-                                        setState(() {
-                                          isForgotPassword = true;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(height: 100.h),
-                                  CustomButton(
-                                    press: () {
-                                      Login();
-                                    },
-                                    height: 100.h,
-                                    width: 300.w,
-                                    radius: 20.r,
-                                    text: 'Login',
-                                  ),
-                                  SizedBox(height: 50.h)
-                                ],
+                            SizedBox(height: 40.h),
+                            customFormField(
+                              controller: controller.emailController,
+                              label: 'Email',
+                              prefix: Icons.email,
+                              onChange: (String val) {},
+                              type: TextInputType.emailAddress,
+                              validate: (String? value) {
+                                if (value!.isEmpty) {
+                                  return 'email must not be empty';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: 52.h),
+                            customFormField(
+                              controller: controller.passwordController,
+                              label: 'Password',
+                              prefix: Icons.lock,
+                              onChange: (String val) {},
+                              suffix: controller.isPassword.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              isPassword: controller.isPassword.value,
+                              suffixPressed: () {
+                                controller.showPassword();
+                              },
+                              type: TextInputType.visiblePassword,
+                              validate: (String? value) {
+                                if (value!.isEmpty) {
+                                  return 'password is too short';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: 32.h),
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: ClicableText(
+                                text: 'Forgot Password?',
+                                style: sfRegularStyle(
+                                    color: purple, fontSize: 16.sp),
+                                function: () {
+                                  Get.to(() => ForgotPasswordScreen());
+                                },
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 100.h),
+                            CustomButton(
+                              press: () => _isLoading ? null : login(),
+                              height: 50.h,
+                              width: 200.w,
+                              radius: 20.r,
+                              text: _isLoading ? 'Logging in...' : 'Login',
+                            ),
+                            SizedBox(height: 50.h)
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -309,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 30.h),
               Padding(
-                padding: EdgeInsets.only(bottom: 20.h, left: size.width / 48),
+                padding: EdgeInsets.only(bottom: 20.h, left: 20.w),
                 child: MouseRegion(
                   onEnter: (_) => controller.isHovering.value = true,
                   onExit: (_) => controller.isHovering.value = false,
@@ -320,13 +218,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: 'Contact us',
                         icon: MyIcons.contact_us,
                         textStyle: redHatMediumStyle(
-                            color: controller.isHovering.value
-                                ? Colors.white
-                                : purple,
-                            fontSize: 20),
-                        color: controller.isHovering.value
-                            ? purple
-                            : Colors.transparent,
+                            color:
+                                controller.isHovering.value ? purple : purple,
+                            fontSize: 16.sp),
+                        color: controller.isHovering.value ? white : purple,
                         borderSize: 5,
                         radius: 20.r,
                       )),

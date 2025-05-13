@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modernschool/view/utils/constants/constant.dart';
-import 'package:modernschool/view/utils/constants/font_style.dart';
-import 'package:modernschool/view/utils/constants/responsive.dart';
 
 class ClicableText extends StatelessWidget {
   ClicableText(

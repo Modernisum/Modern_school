@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:multiselect/multiselect.dart';
-import 'package:modernschool/view/screens/grades/grades-controller.dart';
 
 class GradeSelector extends StatelessWidget {
   GradeSelector(

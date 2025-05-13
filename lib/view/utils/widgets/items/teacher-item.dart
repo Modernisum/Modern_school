@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:modernschool/models/grades.dart';
 import 'package:modernschool/models/teacher.dart';
 import 'package:modernschool/view/screens/teachers/teachers-controller.dart';
 import 'package:modernschool/view/utils/constants/constant.dart';
 import 'package:modernschool/view/utils/constants/font_style.dart';
-import 'package:modernschool/view/utils/constants/my_icons.dart';
 import 'package:modernschool/view/utils/constants/responsive.dart';
 
 class TeacherItem extends StatelessWidget {

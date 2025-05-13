@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:modernschool/view/screens/classes/classes_api.dart';
-import 'package:modernschool/view/screens/grades/grades-controller.dart';
 import 'package:modernschool/view/screens/grades/grades_api.dart';
 
 class ClassesController extends GetxController {

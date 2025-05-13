@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modernschool/view/screens/main-screen/main-screen.dart';
 import '../constants/constant.dart';
 import '../constants/font_style.dart';
 import '../constants/responsive.dart';

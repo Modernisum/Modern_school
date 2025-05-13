@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modernschool/models/grades.dart';
-import 'package:modernschool/models/subject.dart';
 import 'package:modernschool/view/screens/classes/classes-controller.dart';
 import 'package:modernschool/view/utils/constants/constant.dart';
 import 'package:modernschool/view/utils/constants/font_style.dart';
-import 'package:modernschool/view/utils/constants/my_icons.dart';
 import 'package:modernschool/view/utils/constants/responsive.dart';
 
 import '../../../../models/classes.dart';

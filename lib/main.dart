@@ -5,12 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:modernschool/view/bindings/login-binding.dart';
 import 'package:modernschool/view/routes/app_pages.dart';
-import 'package:modernschool/view/screens/login/login_screen.dart';
 import 'package:modernschool/view/utils/constants/constant.dart';
 import 'package:modernschool/view/utils/constants/font_families.dart';
 import 'package:modernschool/view/utils/constants/font_style.dart';
-import 'package:modernschool/view/utils/constants/utils.dart';
-import 'package:modernschool/view/screens/login/login_controller.dart';
 
 import 'firebase_options.dart';
 

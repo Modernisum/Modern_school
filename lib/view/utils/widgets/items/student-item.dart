@@ -1,14 +1,8 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:modernschool/models/grades.dart';
 import 'package:modernschool/models/student.dart';
-import 'package:modernschool/models/teacher.dart';
 import 'package:modernschool/view/screens/students/students-controller.dart';
-import 'package:modernschool/view/screens/your-school/your_school_controller.dart';
 import 'package:modernschool/view/utils/constants/constant.dart';
 import 'package:modernschool/view/utils/constants/font_style.dart';
-import 'package:modernschool/view/utils/constants/my_icons.dart';
 import 'package:modernschool/view/utils/constants/responsive.dart';
 import 'package:modernschool/view/utils/widgets/check-existing-box.dart';
 
