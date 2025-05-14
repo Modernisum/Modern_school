@@ -14,8 +14,10 @@ class ClassItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: ValueKey<String>('class_${gClass.name}'),
       onTap: () => {print('grade')},
       child: Container(
+        key: ValueKey<String>('class_container_${gClass.name}'),
         decoration: myDecoration,
         child: Padding(
           padding: EdgeInsets.all(Responsive.isMobile(context)
@@ -50,16 +52,17 @@ class ClassItem extends StatelessWidget {
                                     color: darkGray, fontSize: 28),
                                 contentPadding: EdgeInsets.all(20),
                                 content: Column(
+                                  key: ValueKey<String>('class_dialog_${gClass.name}'),
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Row(
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            ClassesController c =
-                                                Get.put(ClassesController());
-                                            c.deletegrade(gClass.name);
-                                            c.update();
+                                            Get.find<ClassesController>()
+                                                .deletegrade(gClass.name);
+                                            Get.find<ClassesController>()
+                                                .update();
                                             Get.back();
                                           },
                                           child: Container(

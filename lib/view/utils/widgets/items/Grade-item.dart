@@ -15,8 +15,10 @@ class GradeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: ValueKey<String>('grade_${grade.name}'),
       onTap: () => {print('grade')},
       child: Container(
+        key: ValueKey<String>('grade_container_${grade.name}'),
         decoration: myDecoration,
         child: Padding(
           padding: EdgeInsets.all(Responsive.isMobile(context)
@@ -51,16 +53,17 @@ class GradeItem extends StatelessWidget {
                                     color: darkGray, fontSize: 28),
                                 contentPadding: EdgeInsets.all(20),
                                 content: Column(
+                                  key: ValueKey<String>('grade_dialog_${grade.name}'),
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Row(
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            GradesController c =
-                                                Get.put(GradesController());
-                                            c.deletegrade(grade.name);
-                                            c.update();
+                                            Get.find<GradesController>()
+                                                .deletegrade(grade.name);
+                                            Get.find<GradesController>()
+                                                .update();
                                             Get.back();
                                           },
                                           child: Container(

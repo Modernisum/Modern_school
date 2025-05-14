@@ -48,6 +48,16 @@ class GradesController extends GetxController {
     //Get.back();
     await GradeApi.addgradeapi(gradeNameController.text,
         gradeFeesController.text, selectedSubjectsOptionList.value);
+        
+    // Clear form fields
+    gradeNameController.clear();
+    gradeFeesController.clear();
+    selectedSubjectsOptionList.clear();
+    selectedSubjectsOption.value = '';
+    
+    // Navigate back
+    Get.back();
+    
     update();
   }
 

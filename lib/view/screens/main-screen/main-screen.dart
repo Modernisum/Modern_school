@@ -14,29 +14,33 @@ import 'package:modernschool/view/utils/constants/responsive.dart';
 
 import '../../utils/widgets/menu.dart';
 
-MainController controller = Get.put(MainController());
-
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
+  // Define static instances of each screen to prevent recreating them on each build
+  static final List<Widget> _pages = [
+    const YourSchoolScreen(),
+    const GradesScreen(),
+    const ClassesScreen(),
+    const SubjectsScreen(),
+    const StudentsScreen(),
+    const TeachersScreen(),
+    const SchedulesScreen(),
+    const AnnouncementsScreen(),
+    const ReportsAndEmailsScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
+    // Controller is already initialized in GlobalBindings, so we can simply find it
+    final controller = Get.find<MainController>();
+    
     Size size = MediaQuery.of(context).size;
-    List pages = [
-      YourSchoolScreen(),
-      GradesScreen(),
-      ClassesScreen(),
-      SubjectsScreen(),
-      StudentsScreen(),
-      TeachersScreen(),
-      SchedulesScreen(),
-      AnnouncementsScreen(),
-      ReportsAndEmailsScreen(),
-    ];
 
     return Scaffold(
-      key: navigationController.scaffoldKey,
+      key: controller.scaffoldKey,
       drawer: menu(
+        key: const ValueKey('drawer-menu'),
         size: size,
       ),
       body: SafeArea(
@@ -46,17 +50,17 @@ class MainScreen extends StatelessWidget {
           if (Responsive.isDesktop(context))
             Expanded(
                 child: menu(
+              key: const ValueKey('sidebar-menu'),
               size: size,
             )),
-          GetBuilder(
-              init: MainController(),
-              builder: (MainController navigationController) {
-                int index = navigationController.index.value;
-                if (index >= 0 && index < pages.length) {
-                  return Expanded(flex: 4, child: pages[index]);
+          GetBuilder<MainController>(
+              builder: (controller) {
+                int index = controller.index.value;
+                if (index >= 0 && index < _pages.length) {
+                  return Expanded(flex: 4, child: _pages[index]);
                 } else {
                   // Handle invalid index, e.g., show an error message or default to the first page
-                  return Expanded(flex: 4, child: pages[0]);
+                  return Expanded(flex: 4, child: _pages[0]);
                 }
               })
         ],

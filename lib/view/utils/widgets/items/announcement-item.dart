@@ -16,6 +16,7 @@ class AnnouncementItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: ValueKey<String>('announcement_${announcement.id}'),
       onLongPress: () {
         Get.defaultDialog(
             backgroundColor: backgroundColor,
@@ -23,16 +24,15 @@ class AnnouncementItem extends StatelessWidget {
             titleStyle: redHatMediumStyle(color: darkGray, fontSize: 28),
             contentPadding: EdgeInsets.all(20),
             content: Column(
+              key: ValueKey<String>('announcement_dialog_${announcement.id}'),
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   children: [
                     InkWell(
                       onTap: () {
-                        AnnouncementsController c =
-                            Get.put(AnnouncementsController());
-                        c.deleteAnnouncement(announcement.id);
-                        c.update();
+                        final controller = Get.find<AnnouncementsController>();
+                        controller.deleteAnnouncement(announcement.id);
                         Get.back();
                       },
                       child: Container(

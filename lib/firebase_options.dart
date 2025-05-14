@@ -53,13 +53,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyANAxXIIy8iNtlX6bGtrCxY9JtHVcwcMkI',
-    appId: '1:1085414527934:web:06bce4d4195c32163a1fef',
-    messagingSenderId: '1085414527934',
-    projectId: 'sample-firebase-ai-app-200a6',
-    authDomain: 'sample-firebase-ai-app-200a6.firebaseapp.com',
-    databaseURL: 'https://sample-firebase-ai-app-200a6-default-rtdb.firebaseio.com',
-    storageBucket: 'sample-firebase-ai-app-200a6.appspot.com',
+    apiKey: 'AIzaSyCrxzGs7KhQPhYKtecI9TMREArzXLlrKpA',
+    appId: '1:438141485295:web:7769e35c0ce08587dcdb1a',
+    messagingSenderId: '438141485295',
+    projectId: 'modernschool-e873a',
+    authDomain: 'modernschool-e873a.firebaseapp.com',
+    storageBucket: 'modernschool-e873a.firebasestorage.app',
+    measurementId: 'G-BK74VETBS7',
   );
 
 }

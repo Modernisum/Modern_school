@@ -56,6 +56,16 @@ class ClassesController extends GetxController {
     await ClassesApi.addclassapi(dropdownvalue.value, SectionController.text,
         selectedTeachersOptionList.value);
     print('Done!');
+    
+    // Clear form fields
+    SectionController.clear();
+    selectedTeachersOptionList.clear();
+    selectedTeachersOption.value = 'Teachers';
+    dropdownvalue.value = items.isNotEmpty ? items[0] : 'Grade';
+    
+    // Navigate back
+    Get.back();
+    
     update();
   }
 

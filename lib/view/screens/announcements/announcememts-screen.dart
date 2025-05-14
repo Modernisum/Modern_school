@@ -15,10 +15,13 @@ class AnnouncementsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AnnouncementsController>();
     Size size = MediaQuery.of(context).size;
     var textcontroller = TextEditingController();
     return SafeArea(
+      key: const ValueKey('announcements-safe-area'),
       child: SingleChildScrollView(
+        key: const ValueKey('announcements-scroll-view'),
         child: Padding(
           padding: EdgeInsets.all(defaultPadding),
           child: Column(
@@ -50,7 +53,6 @@ class AnnouncementsScreen extends StatelessWidget {
                         height: 20,
                       ),
                       /*GetBuilder(
-                          init: AnnouncementsController(),
                           builder: (AnnouncementsController c) {
                             return c.isStudents.value
                                 ? Row(
@@ -93,8 +95,7 @@ class AnnouncementsScreen extends StatelessWidget {
                         width: Responsive.isDesktop(context)
                             ? size.width / 3
                             : size.width / 2,
-                        child: GetBuilder(
-                            init: AnnouncementsController(),
+                        child: GetBuilder<AnnouncementsController>(
                             builder: (AnnouncementsController c) {
                               return FutureBuilder(
                                   future: c.getmyAnnouncements(),
@@ -162,8 +163,7 @@ class AnnouncementsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  GetBuilder(
-                      init: AnnouncementsController(),
+                  GetBuilder<AnnouncementsController>(
                       builder: (AnnouncementsController c) {
                         return Padding(
                           padding: EdgeInsets.only(
@@ -185,8 +185,7 @@ class AnnouncementsScreen extends StatelessWidget {
                                         content: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            GetBuilder(
-                                                init: AnnouncementsController(),
+                                            GetBuilder<AnnouncementsController>(
                                                 builder:
                                                     (AnnouncementsController
                                                         ccc) {
@@ -237,9 +236,8 @@ class AnnouncementsScreen extends StatelessWidget {
                                                         }).toList(),
                                                         onChanged:
                                                             (String? newValue) {
-                                                          ccc.changevalue(
+                                                          ccc.changeValue(
                                                               newValue);
-                                                          ccc.update();
 
                                                           print(ccc
                                                               .dropdownvalue
@@ -278,8 +276,7 @@ class AnnouncementsScreen extends StatelessWidget {
                                             SizedBox(
                                               height: 20.0,
                                             ),
-                                            GetBuilder(
-                                              init: AnnouncementsController(),
+                                            GetBuilder<AnnouncementsController>(
                                               builder:
                                                   (AnnouncementsController c) {
                                                 return c.dropdownvalue.value ==
@@ -339,18 +336,10 @@ class AnnouncementsScreen extends StatelessWidget {
                                                               }).toList(),
                                                               onChanged: (String?
                                                                   newValue) {
-                                                                c.changevalue4(
+                                                                c.changeValue4(
                                                                     newValue);
-
-                                                                print(c
-                                                                    .dropdownvalue4
-                                                                    .value);
-
-                                                                c.getclassOptions(c
-                                                                    .dropdownvalue4
-                                                                    .value);
-
-                                                                c.update();
+                                                                c.getclassOptions(
+                                                                    newValue!);
                                                               },
                                                             ),
                                                           ),
@@ -412,14 +401,8 @@ class AnnouncementsScreen extends StatelessWidget {
                                                               }).toList(),
                                                               onChanged: (String?
                                                                   newValue) {
-                                                                c.changevalue2(
+                                                                c.changeValue2(
                                                                     newValue);
-
-                                                                print(c
-                                                                    .dropdownvalue2
-                                                                    .value);
-
-                                                                c.update();
                                                               },
                                                             ),
                                                           ),
@@ -439,10 +422,7 @@ class AnnouncementsScreen extends StatelessWidget {
                                                 children: [
                                                   InkWell(
                                                     onTap: () {
-                                                      AnnouncementsController
-                                                          cc = Get.put(
-                                                              AnnouncementsController());
-                                                      cc.addAnnouncement();
+                                                      controller.addAnnouncement();
 
                                                       Get.back();
                                                     },
@@ -512,81 +492,78 @@ class AnnouncementsOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-        init: AnnouncementsController(),
-        builder: (AnnouncementsController c) {
-          return Row(
-            children: [
-              ClicableText(
-                text: 'public',
-                style: redHatMediumStyle(
-                    color: c.isPublic.value ? white : gray, // change colour
-                    fontSize: Responsive.isDesktop(context)
-                        ? 24
-                        : Responsive.isTablet(context)
-                            ? 20
-                            : 16),
-                function: c.selectPublicAnnouncements,
-                activeLine: true,
-                lineColor: c.isPublic.value ? Colors.white : lightGray,
-                length: Responsive.isMobile(context)
-                    ? 48
-                    : Responsive.isTablet(context)
-                        ? 60
-                        : 72,
-              ),
-              SizedBox(
-                width: Responsive.isMobile(context)
-                    ? 46
-                    : Responsive.isTablet(context)
-                        ? 108
-                        : 48,
-              ),
-              ClicableText(
-                text: 'students',
-                style: redHatMediumStyle(
-                    color: c.isStudents.value ? white : gray,
-                    fontSize: Responsive.isDesktop(context)
-                        ? 24
-                        : Responsive.isTablet(context)
-                            ? 20
-                            : 16),
-                function: c.selectStudentsAnnouncements,
-                activeLine: true,
-                lineColor: c.isStudents.value ? white : lightGray,
-                length: Responsive.isMobile(context)
-                    ? 72
-                    : Responsive.isTablet(context)
-                        ? 84
-                        : 104,
-              ),
-              SizedBox(
-                width: Responsive.isMobile(context)
-                    ? 46
-                    : Responsive.isTablet(context)
-                        ? 108
-                        : 48,
-              ),
-              ClicableText(
-                text: 'teachers',
-                style: redHatMediumStyle(
-                    color: c.isTeachers.value ? white : gray,
-                    fontSize: Responsive.isDesktop(context)
-                        ? 24
-                        : Responsive.isTablet(context)
-                            ? 20
-                            : 16),
-                function: c.selectTeachersAnnouncements,
-                activeLine: true,
-                lineColor: c.isTeachers.value ? Colors.white : lightGray,
-                length: Responsive.isMobile(context)
-                    ? 72
-                    : Responsive.isTablet(context)
-                        ? 84
-                        : 104,
-              ),
-            ],
-          );
-        });
+    final AnnouncementsController c = Get.find<AnnouncementsController>();
+    return Row(
+      children: [
+        ClicableText(
+          text: 'public',
+          style: redHatMediumStyle(
+              color: c.isPublic.value ? white : gray,
+              fontSize: Responsive.isDesktop(context)
+                  ? 24
+                  : Responsive.isTablet(context)
+                      ? 20
+                      : 16),
+          function: c.selectPublicAnnouncements,
+          activeLine: true,
+          lineColor: c.isPublic.value ? Colors.white : lightGray,
+          length: Responsive.isMobile(context)
+              ? 48
+              : Responsive.isTablet(context)
+                  ? 60
+                  : 72,
+        ),
+        SizedBox(
+          width: Responsive.isMobile(context)
+              ? 46
+              : Responsive.isTablet(context)
+                  ? 108
+                  : 48,
+        ),
+        ClicableText(
+          text: 'students',
+          style: redHatMediumStyle(
+              color: c.isStudents.value ? white : gray,
+              fontSize: Responsive.isDesktop(context)
+                  ? 24
+                  : Responsive.isTablet(context)
+                      ? 20
+                      : 16),
+          function: c.selectStudentsAnnouncements,
+          activeLine: true,
+          lineColor: c.isStudents.value ? Colors.white : lightGray,
+          length: Responsive.isMobile(context)
+              ? 72
+              : Responsive.isTablet(context)
+                  ? 84
+                  : 104,
+        ),
+        SizedBox(
+          width: Responsive.isMobile(context)
+              ? 46
+              : Responsive.isTablet(context)
+                  ? 108
+                  : 48,
+        ),
+        ClicableText(
+          text: 'teachers',
+          style: redHatMediumStyle(
+              color: c.isTeachers.value ? white : gray,
+              fontSize: Responsive.isDesktop(context)
+                  ? 24
+                  : Responsive.isTablet(context)
+                      ? 20
+                      : 16),
+          function: c.selectTeachersAnnouncements,
+          activeLine: true,
+          lineColor: c.isTeachers.value ? Colors.white : lightGray,
+          length: Responsive.isMobile(context)
+              ? 72
+              : Responsive.isTablet(context)
+                  ? 84
+                  : 104,
+        ),
+      ],
+    );
   }
 }

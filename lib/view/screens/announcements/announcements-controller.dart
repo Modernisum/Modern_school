@@ -22,11 +22,14 @@ class AnnouncementsController extends GetxController {
   final ContentController = TextEditingController();
   final TitleController = TextEditingController();
 
-  var items = ['All', 'Teachers', 'classroom'];
-  var dropdownvalue = 'All'.obs;
+  var items = <String>[].obs;
+  var dropdownvalue = ''.obs;
 
   var items2 = <String>[].obs;
   var dropdownvalue2 = ''.obs;
+
+  var items3 = <String>[].obs;
+  var dropdownvalue3 = ''.obs;
 
   var gradesOptions = <String>[].obs;
   var selectedGradesOptionList = <String>[].obs;
@@ -35,13 +38,22 @@ class AnnouncementsController extends GetxController {
   var items4 = <String>[].obs;
   var dropdownvalue4 = ''.obs;
 
+  var items5 = <String>[].obs;
+  var dropdownvalue5 = ''.obs;
+
   @override
-  void onInit() async {
+  void onInit() {
+    super.onInit();
     getmyAnnouncements();
     getmyAnnouncementsTe();
     getmyAnnouncementsSt();
     getclassOptions(dropdownvalue4.value);
     getgradesOptions();
+    items.value = ['Option 1', 'Option 2', 'Option 3'];
+    items2.value = ['Option 1', 'Option 2', 'Option 3'];
+    items3.value = ['Option 1', 'Option 2', 'Option 3'];
+    items4.value = ['Option 1', 'Option 2', 'Option 3'];
+    items5.value = ['Option 1', 'Option 2', 'Option 3'];
   }
 
   deleteAnnouncement(String? id) async {
@@ -49,7 +61,7 @@ class AnnouncementsController extends GetxController {
     getmyAnnouncements();
     getmyAnnouncementsTe();
     getmyAnnouncementsSt();
-    controller.update();
+    update();
   }
 
   addAnnouncement() async {
@@ -62,22 +74,53 @@ class AnnouncementsController extends GetxController {
         dropdownvalue2.value,
         dropdownvalue4.value);
     print('Done!');
+    
+    // Clear form fields
+    ContentController.clear();
+    TitleController.clear();
+    dropdownvalue.value = items.isNotEmpty ? items[0] : '';
+    dropdownvalue2.value = items2.isNotEmpty ? items2[0] : '';
+    dropdownvalue4.value = items4.isNotEmpty ? items4[0] : '';
+    
+    // Navigate back
+    Get.back();
+    
     update();
   }
 
-  changevalue(String? val) {
-    dropdownvalue.value = val!;
-    update();
+  changeValue(String? newValue) {
+    if (newValue != null) {
+      dropdownvalue.value = newValue;
+      update();
+    }
   }
 
-  changevalue2(String? val) {
-    dropdownvalue2.value = val!;
-    update();
+  changeValue2(String? newValue) {
+    if (newValue != null) {
+      dropdownvalue2.value = newValue;
+      update();
+    }
   }
 
-  changevalue4(String? val) {
-    dropdownvalue4.value = val!;
-    update();
+  changeValue3(String? newValue) {
+    if (newValue != null) {
+      dropdownvalue3.value = newValue;
+      update();
+    }
+  }
+
+  changeValue4(String? newValue) {
+    if (newValue != null) {
+      dropdownvalue4.value = newValue;
+      update();
+    }
+  }
+
+  changeValue5(String? newValue) {
+    if (newValue != null) {
+      dropdownvalue5.value = newValue;
+      update();
+    }
   }
 
   getnewAnnouncements(List<String> seclasses) async {

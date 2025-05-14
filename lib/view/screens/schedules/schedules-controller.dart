@@ -103,7 +103,18 @@ class SchedulesController extends GetxController {
         fileUrl.value); // Changed to camelCase
     print('Done!');
     EasyLoading.showSuccess('Great Success!');
-    fileUrl.value = 'nothing'; // Changed to camelCase
+    
+    // Clear form fields
+    fileUrl.value = 'nothing';
+    dropdownValue.value = items.isNotEmpty ? items[0] : 'Teacher';
+    dropdownValue2.value = items2.isNotEmpty ? items2[0] : '';
+    dropdownValue3.value = items3.isNotEmpty ? items3[0] : 'exam';
+    dropdownValue4.value = items4.isNotEmpty ? items4[0] : '';
+    dropdownValue5.value = items5.isNotEmpty ? items5[0] : '';
+    
+    // Navigate back
+    Get.back();
+    
     update();
   }
 

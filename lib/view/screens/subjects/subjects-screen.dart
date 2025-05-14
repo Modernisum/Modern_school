@@ -274,8 +274,7 @@ class SubjectsScreen extends StatelessWidget {
                                                 InkWell(
                                                   onTap: () {
                                                     SubjectsController cc =
-                                                        Get.put(
-                                                            SubjectsController());
+                                                        Get.find<SubjectsController>();
                                                     cc.addSubject();
                                                     // c.update();
                                                     Get.back();

@@ -7,17 +7,16 @@ import '../constants/constant.dart';
 import '../constants/my_icons.dart';
 import 'drawer-list-item.dart';
 
-MainController navigationController = Get.put(MainController());
-
-class menu extends StatelessWidget {
-  const menu({
-    super.key,
+class MenuWidget extends StatelessWidget {
+  const MenuWidget({
+    Key? key,
     required this.size,
-  });
+  }) : super(key: key);
 
   final Size size;
   @override
   Widget build(BuildContext context) {
+    final MainController controller = Get.find<MainController>();
     return Container(
       decoration: BoxDecoration(
         gradient: gradientColor,
@@ -27,85 +26,101 @@ class menu extends StatelessWidget {
       child: Drawer(
         backgroundColor: Colors.transparent,
         child: SingleChildScrollView(
+          key: const ValueKey('menu-scroll-view'),
           child: Column(
+            key: const ValueKey('menu-main-column'),
             children: [
               DrawerHeader(
+                  key: const ValueKey('menu-drawer-header'),
                   child: Padding(
-                padding: EdgeInsets.only(top: defaultPadding * 3),
-                child: Text(
-                  'Modern School',
-                  style: redHatBoldStyle(color: white, fontSize: 32),
-                ),
-              )),
-              Column(children: [
+                    key: const ValueKey('menu-header-padding'),
+                    padding: EdgeInsets.only(top: defaultPadding * 3),
+                    child: Text(
+                      'Modern School',
+                      style: redHatBoldStyle(color: white, fontSize: 32),
+                    ),
+                  )),
+              Column(
+                  key: const ValueKey('menu-items-column'),
+                  children: [
                 DarwerListItem(
+                    key: const ValueKey('menu-item-school'),
                     title: 'Your School',
                     icon: MyIcons.school,
                     press: () {
-                      navigationController.updateIndex(0);
-                      navigationController.closeDrawer();
+                      controller.updateIndex(0);
+                      controller.closeDrawer();
                     }),
                 DarwerListItem(
+                    key: const ValueKey('menu-item-grades'),
                     title: 'Grades',
                     icon: MyIcons.grade,
                     press: () {
-                      navigationController.updateIndex(1);
-                      navigationController.closeDrawer();
+                      controller.updateIndex(1);
+                      controller.closeDrawer();
                     }),
                 DarwerListItem(
+                    key: const ValueKey('menu-item-classes'),
                     title: 'Classes',
                     icon: MyIcons.class_icon,
                     press: () {
-                      navigationController.updateIndex(2);
-
-                      navigationController.closeDrawer();
+                      controller.updateIndex(2);
+                      controller.closeDrawer();
                     }),
                 DarwerListItem(
+                    key: const ValueKey('menu-item-subjects'),
                     title: 'Subjects',
                     icon: MyIcons.subject,
                     press: () {
-                      navigationController.updateIndex(3);
-
-                      navigationController.closeDrawer();
+                      controller.updateIndex(3);
+                      controller.closeDrawer();
                     }),
                 DarwerListItem(
+                    key: const ValueKey('menu-item-students'),
                     title: 'Students',
                     icon: MyIcons.student,
                     press: () {
-                      navigationController.updateIndex(4);
-                      navigationController.closeDrawer();
+                      controller.updateIndex(4);
+                      controller.closeDrawer();
                     }),
                 DarwerListItem(
+                    key: const ValueKey('menu-item-teachers'),
                     title: 'Teachers',
                     icon: MyIcons.student,
                     press: () {
-                      navigationController.updateIndex(5);
-                      navigationController.closeDrawer();
+                      controller.updateIndex(5);
+                      controller.closeDrawer();
                     }),
                 DarwerListItem(
+                    key: const ValueKey('menu-item-schedules'),
                     title: 'Schedules',
                     icon: MyIcons.schedule,
                     press: () {
-                      navigationController.updateIndex(6);
-                      navigationController.closeDrawer();
+                      controller.updateIndex(6);
+                      controller.closeDrawer();
                     }),
                 DarwerListItem(
+                    key: const ValueKey('menu-item-announcements'),
                     title: 'Announcements',
                     icon: MyIcons.announcements,
                     press: () {
-                      navigationController.updateIndex(7);
-                      navigationController.closeDrawer();
+                      controller.updateIndex(7);
+                      controller.closeDrawer();
                     }),
                 DarwerListItem(
+                    key: const ValueKey('menu-item-reports'),
                     title: 'Reports',
                     icon: MyIcons.reports,
                     press: () {
-                      navigationController.updateIndex(8);
-                      navigationController.closeDrawer();
+                      controller.updateIndex(8);
+                      controller.closeDrawer();
                     }),
                 SizedBox(height: size.height / 15),
                 DarwerListItem(
-                    title: 'Contact Us', icon: MyIcons.contact_us, press: () {})
+                    key: const ValueKey('menu-item-contact'),
+                    title: 'Contact Us', 
+                    icon: MyIcons.contact_us, 
+                    press: () {})
               ])
             ],
           ),
@@ -113,4 +128,11 @@ class menu extends StatelessWidget {
       ),
     );
   }
+}
+
+class menu extends MenuWidget {
+  const menu({
+    Key? key,
+    required Size size,
+  }) : super(key: key, size: size);
 }

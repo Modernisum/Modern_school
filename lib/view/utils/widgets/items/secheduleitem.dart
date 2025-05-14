@@ -16,6 +16,7 @@ class ScheduleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: ValueKey<String>('schedule_${schedule.id}'),
       onLongPress: () {
         Get.defaultDialog(
             backgroundColor: backgroundColor,
@@ -23,15 +24,16 @@ class ScheduleItem extends StatelessWidget {
             titleStyle: redHatMediumStyle(color: darkGray, fontSize: 28),
             contentPadding: EdgeInsets.all(20),
             content: Column(
+              key: ValueKey<String>('schedule_dialog_${schedule.id}'),
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   children: [
                     InkWell(
                       onTap: () {
-                        SchedulesController c = Get.put(SchedulesController());
-                        c.deleteSchedule(schedule.id, schedule.classroom);
-                        c.update();
+                        final controller = Get.find<SchedulesController>();
+                        controller.deleteSchedule(schedule.id, schedule.classroom);
+                        controller.update();
                         Get.back();
                       },
                       child: Container(

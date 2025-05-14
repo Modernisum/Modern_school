@@ -49,19 +49,24 @@ class _BorderedButtonState extends State<BorderedButton> {
           height: widget.height.h,
           width: widget.width.w,
           child: Padding(
-            padding: EdgeInsets.all(20.h),
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
                   widget.icon,
                   color: isHovering ? Colors.white : widget.color,
-                  size: 36.h,
+                  size: 24.h,
                 ),
-                Text(
-                  widget.text,
-                  style: widget.textStyle?.copyWith(
-                    color: isHovering ? Colors.white : widget.color,
+                SizedBox(width: 8.w),
+                Flexible(
+                  child: Text(
+                    widget.text,
+                    style: widget.textStyle?.copyWith(
+                      color: isHovering ? Colors.white : widget.color,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],

@@ -276,8 +276,7 @@ class ClassesScreen extends StatelessWidget {
                                                 InkWell(
                                                   onTap: () {
                                                     ClassesController cc =
-                                                        Get.put(
-                                                            ClassesController());
+                                                        Get.find<ClassesController>();
                                                     cc.addclass();
                                                     // c.update();
                                                     Get.back();

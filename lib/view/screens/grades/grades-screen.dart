@@ -191,8 +191,7 @@ class GradesScreen extends StatelessWidget {
                                             children: [
                                               InkWell(
                                                 onTap: () {
-                                                  GradesController c = Get.put(
-                                                      GradesController());
+                                                  GradesController c = Get.find<GradesController>();
                                                   c.addgrade();
                                                   // c.update();
                                                   Get.back();

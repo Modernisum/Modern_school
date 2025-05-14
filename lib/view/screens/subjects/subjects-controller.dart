@@ -56,6 +56,16 @@ class SubjectsController extends GetxController {
     await SubjectApi.addsubjectapi(dropdownvalue.value,
         subjectNameController.text, selectedTeachersOptionList.value);
     print('Done!');
+    
+    // Clear form fields
+    subjectNameController.clear();
+    selectedTeachersOptionList.clear();
+    selectedTeachersOption.value = 'Teachers';
+    dropdownvalue.value = items.isNotEmpty ? items[0] : 'Grade';
+    
+    // Navigate back
+    Get.back();
+    
     update();
   }
 

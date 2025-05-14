@@ -53,6 +53,17 @@ class TeachersController extends GetxController {
     );
     print('Done!');
     EasyLoading.showSuccess('Great Success!');
+    
+    // Clear all form fields
+    stopUploadingInfo();
+    
+    // Navigate back to previous page
+    unactiveAddingTeacher();
+    
+    // Reset any other states
+    isEditing.value = false;
+    showInfo.value = false;
+    
     update();
   }
 
