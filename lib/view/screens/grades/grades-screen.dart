@@ -16,7 +16,7 @@ class GradesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var textcontroller = TextEditingController();
+    // Removed unused variable 'textcontroller'
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
@@ -60,7 +60,7 @@ class GradesScreen extends StatelessWidget {
                               }
 
                               return Column(children: [
-                                controller.mygrades.value.isEmpty
+                                controller.mygrades.isEmpty
                                     ? Center(
                                         child: Text(
                                           'NO Grades',
@@ -84,13 +84,11 @@ class GradesScreen extends StatelessWidget {
                                               SizedBox(
                                             height: 32,
                                           ),
-                                          itemCount:
-                                              controller.mygrades.value.length,
+                                          itemCount: controller.mygrades.length,
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return GradeItem(
-                                              grade: controller
-                                                  .mygrades.value[index],
+                                              grade: controller.mygrades[index],
                                             );
                                           },
                                         ),
@@ -158,12 +156,11 @@ class GradesScreen extends StatelessWidget {
                                                 whenEmpty: 'Chose Subjects',
                                                 onChanged: (value) {
                                                   c.selectedSubjectsOptionList
-                                                      .value = value;
+                                                      .assignAll(value);
                                                   c.selectedSubjectsOption
                                                       .value = '';
                                                   for (var element in c
-                                                      .selectedSubjectsOptionList
-                                                      .value) {
+                                                      .selectedSubjectsOptionList) {
                                                     c.selectedSubjectsOption
                                                             .value =
                                                         '${c.selectedSubjectsOption.value} $element';
@@ -171,12 +168,10 @@ class GradesScreen extends StatelessWidget {
 
                                                   c.update();
                                                   print(c
-                                                      .selectedSubjectsOptionList
-                                                      .value);
+                                                      .selectedSubjectsOptionList);
                                                 },
                                                 selectedValues: c
-                                                    .selectedSubjectsOptionList
-                                                    .value,
+                                                    .selectedSubjectsOptionList,
                                               ),
                                             );
                                           },
@@ -191,7 +186,8 @@ class GradesScreen extends StatelessWidget {
                                             children: [
                                               InkWell(
                                                 onTap: () {
-                                                  GradesController c = Get.find<GradesController>();
+                                                  GradesController c = Get.find<
+                                                      GradesController>();
                                                   c.addgrade();
                                                   // c.update();
                                                   Get.back();

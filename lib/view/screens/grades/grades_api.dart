@@ -73,11 +73,28 @@ class GradeApi {
     print('wait');
     print(allSubjectsselid);
 
+    // Safely parse integers or use defaults if parsing fails
+    int gradeValue;
+    int feesValue;
+    
+    try {
+      gradeValue = int.parse(name);
+    } catch (e) {
+      print("Error parsing grade name: $e");
+      // Use a default value or the original string
+      gradeValue = 0; // Default to 0 or another appropriate value
+    }
+    
+    try {
+      feesValue = int.parse(fees);
+    } catch (e) {
+      print("Error parsing fees: $e");
+      feesValue = 0; // Default to 0
+    }
+
     final data = {
-      "grade": int.parse(
-          name), // grade ke ander keval integer valu hi store ho sakta he
-      "fees": int.parse(
-          fees), // fees ke ander keval integer valu hi store ho sakta he
+      "grade": gradeValue,
+      "fees": feesValue,
       "subject": allSubjectsselid,
     };
 

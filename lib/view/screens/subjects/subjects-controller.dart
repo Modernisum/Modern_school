@@ -36,7 +36,9 @@ class SubjectsController extends GetxController {
   var selectedclassesOption = 'Teachers'.obs;
 
   @override
-  void onInit() async {
+  @override
+  void onInit() {
+    super.onInit(); // Call the superclass's onInit method
     getgradesOptions();
     getteachersOptions2();
     getmySubjects();
@@ -54,18 +56,18 @@ class SubjectsController extends GetxController {
     //Get.back();
     print('add subject...');
     await SubjectApi.addsubjectapi(dropdownvalue.value,
-        subjectNameController.text, selectedTeachersOptionList.value);
+        subjectNameController.text, selectedTeachersOptionList);
     print('Done!');
-    
+
     // Clear form fields
     subjectNameController.clear();
     selectedTeachersOptionList.clear();
     selectedTeachersOption.value = 'Teachers';
     dropdownvalue.value = items.isNotEmpty ? items[0] : 'Grade';
-    
+
     // Navigate back
     Get.back();
-    
+
     update();
   }
 
@@ -99,7 +101,7 @@ class SubjectsController extends GetxController {
     gradesOptions.value = await SubjectApi.getGradesOptions();
     items.value = await GradeApi.getGradesOptions();
     dropdownvalue.value = items[0];
-    print(items.value);
+    print(items);
     print('Done!');
     update();
   }
@@ -112,8 +114,8 @@ class SubjectsController extends GetxController {
     } else {
       print('getting new Subjects ...');
       mysubjects.value =
-          await SubjectApi.getNewSubjects(selectedGradesOptionList.value);
-      print(mysubjects.value);
+          await SubjectApi.getNewSubjects(selectedGradesOptionList);
+      print(mysubjects);
       print('Done!');
     }
   }
@@ -121,8 +123,8 @@ class SubjectsController extends GetxController {
   getnewSubjects(List<String> segrades) async {
     print('getting new Subjects ...');
     mysubjects.value =
-        await SubjectApi.getNewSubjects(selectedGradesOptionList.value);
-    print(mysubjects.value);
+        await SubjectApi.getNewSubjects(selectedGradesOptionList);
+    print(mysubjects);
     print('Done!');
     update();
   }

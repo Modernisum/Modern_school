@@ -130,7 +130,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Container(
-                                key: const ValueKey<String>('login_header_container'),
+                                key: const ValueKey<String>(
+                                    'login_header_container'),
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20.w, vertical: 10.h),
                                 decoration: BoxDecoration(
@@ -161,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onChange: (String val) {},
                                 type: TextInputType.emailAddress,
                                 validate: (String? value) {
-                                  if (value!.isEmpty) {
+                                  if (value?.isEmpty ?? true) {
                                     return 'email must not be empty';
                                   }
                                   return null;
@@ -182,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                                 type: TextInputType.visiblePassword,
                                 validate: (String? value) {
-                                  if (value!.isEmpty) {
+                                  if (value?.isEmpty ?? true) {
                                     return 'password is too short';
                                   }
                                   return null;

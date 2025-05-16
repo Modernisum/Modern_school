@@ -16,7 +16,6 @@ class SubjectsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var textcontroller = TextEditingController();
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
@@ -57,18 +56,19 @@ class SubjectsScreen extends StatelessWidget {
                                 c.selectedGradesOptionList.value = value;
                                 c.selectedGradesOption.value = '';
                                 for (var element
-                                    in c.selectedGradesOptionList.value) {
+                                    in c.selectedGradesOptionList.toList()) {
                                   c.selectedGradesOption.value =
                                       '${c.selectedGradesOption.value} $element';
                                 }
 
                                 c.ok.value = false;
-                                if (c.selectedGradesOptionList.value.isEmpty) {
+                                if (c.selectedGradesOptionList.isEmpty) {
                                   c.ok.value = true;
                                 }
                                 c.update();
                               },
-                              selectedValues: c.selectedGradesOptionList.value,
+                              selectedValues:
+                                  c.selectedGradesOptionList.toList(),
                             ),
                           );
                         }),
@@ -88,7 +88,7 @@ class SubjectsScreen extends StatelessWidget {
                                     ConnectionState.waiting) {
                                   return Center(child: Text('Loading...'));
                                 }
-                                return c.mysubjects.value.isEmpty
+                                return c.mysubjects.isEmpty
                                     ? SizedBox(
                                         height: 500,
                                         child: Center(
@@ -116,12 +116,11 @@ class SubjectsScreen extends StatelessWidget {
                                               SizedBox(
                                             height: 32,
                                           ),
-                                          itemCount: c.mysubjects.value.length,
+                                          itemCount: c.mysubjects.length,
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return SubjectItem(
-                                              subject:
-                                                  c.mysubjects.value[index],
+                                              subject: c.mysubjects[index],
                                             );
                                           },
                                         ),
@@ -193,7 +192,7 @@ class SubjectsScreen extends StatelessWidget {
                                                           .dropdownvalue.value,
                                                       icon: Icon(Icons
                                                           .keyboard_arrow_down),
-                                                      items: ccc.items.value
+                                                      items: ccc.items
                                                           .map((String items) {
                                                         return DropdownMenuItem(
                                                             value: items,
@@ -204,8 +203,8 @@ class SubjectsScreen extends StatelessWidget {
                                                         ccc.changevalue(
                                                             newValue);
 
-                                                        print(ccc.dropdownvalue
-                                                            .value);
+                                                        print(
+                                                            ccc.dropdownvalue);
                                                       },
                                                     ),
                                                   ),
@@ -244,8 +243,7 @@ class SubjectsScreen extends StatelessWidget {
                                                     c.selectedTeachersOption
                                                         .value = '';
                                                     for (var element in c
-                                                        .selectedTeachersOptionList
-                                                        .value) {
+                                                        .selectedTeachersOptionList) {
                                                       c.selectedTeachersOption
                                                               .value =
                                                           '${c.selectedTeachersOption.value} $element';
@@ -253,12 +251,11 @@ class SubjectsScreen extends StatelessWidget {
 
                                                     c.update();
                                                     print(c
-                                                        .selectedTeachersOptionList
-                                                        .value);
+                                                        .selectedTeachersOptionList);
                                                   },
                                                   selectedValues: c
                                                       .selectedTeachersOptionList
-                                                      .value,
+                                                      .toList(),
                                                 ),
                                               );
                                             },
@@ -274,7 +271,8 @@ class SubjectsScreen extends StatelessWidget {
                                                 InkWell(
                                                   onTap: () {
                                                     SubjectsController cc =
-                                                        Get.find<SubjectsController>();
+                                                        Get.find<
+                                                            SubjectsController>();
                                                     cc.addSubject();
                                                     // c.update();
                                                     Get.back();
