@@ -54,7 +54,7 @@ class ClassesController extends GetxController {
     //Get.back();
     print('add class...');
     await ClassesApi.addclassapi(dropdownvalue.value, SectionController.text,
-        selectedTeachersOptionList.value);
+        selectedTeachersOptionList.toList());
     print('Done!');
     
     // Clear form fields
@@ -81,7 +81,7 @@ class ClassesController extends GetxController {
     gradesOptions.value = await GradeApi.getGradesOptions();
     items.value = await GradeApi.getGradesOptions();
     dropdownvalue.value = items[0];
-    print(items.value);
+    print(items.toList());
     print('Done!');
     update();
   }
@@ -94,8 +94,8 @@ class ClassesController extends GetxController {
     } else {
       print('getting new Classes ...');
       myclasses.value =
-          await ClassesApi.getNewClasses(selectedGradesOptionList.value);
-      print(myclasses.value);
+          await ClassesApi.getNewClasses(selectedGradesOptionList.toList());
+      print(myclasses);
       print('Done!');
     }
   }
@@ -103,8 +103,8 @@ class ClassesController extends GetxController {
   getnewClasses(List<String> segrades) async {
     print('getting new Classes ...');
     myclasses.value =
-        await ClassesApi.getNewClasses(selectedGradesOptionList.value);
-    print(myclasses.value);
+        await ClassesApi.getNewClasses(selectedGradesOptionList.toList());
+    print(myclasses);
     print('Done!');
     update();
   }

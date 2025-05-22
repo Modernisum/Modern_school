@@ -11,7 +11,7 @@ class GradeApi {
     var numberofClasses = 0;
     var numberofStudents = 0;
 
-    final grades = await FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection('acadimic_year')
         .get()
         .then((value) async {
@@ -73,28 +73,11 @@ class GradeApi {
     print('wait');
     print(allSubjectsselid);
 
-    // Safely parse integers or use defaults if parsing fails
-    int gradeValue;
-    int feesValue;
-    
-    try {
-      gradeValue = int.parse(name);
-    } catch (e) {
-      print("Error parsing grade name: $e");
-      // Use a default value or the original string
-      gradeValue = 0; // Default to 0 or another appropriate value
-    }
-    
-    try {
-      feesValue = int.parse(fees);
-    } catch (e) {
-      print("Error parsing fees: $e");
-      feesValue = 0; // Default to 0
-    }
-
     final data = {
-      "grade": gradeValue,
-      "fees": feesValue,
+      "grade": int.parse(
+          name), // grade ke ander keval integer valu hi store ho sakta he
+      "fees": int.parse(
+          fees), // fees ke ander keval integer valu hi store ho sakta he
       "subject": allSubjectsselid,
     };
 

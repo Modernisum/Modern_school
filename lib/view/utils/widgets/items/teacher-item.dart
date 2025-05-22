@@ -8,8 +8,8 @@ import 'package:modernschool/view/utils/constants/responsive.dart';
 class TeacherItem extends StatelessWidget {
   TeacherItem({super.key, required this.teacher, required this.controller});
 
-  Teacher teacher;
-  TeachersController controller;
+  final Teacher teacher;
+  final TeachersController controller;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

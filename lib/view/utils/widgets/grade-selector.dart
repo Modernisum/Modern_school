@@ -8,9 +8,9 @@ class GradeSelector extends StatelessWidget {
       required this.options,
       required this.selectedOption,
       required this.selectedOptionList});
-  List<String> options;
-  Rx<List<String>> selectedOptionList;
-  var selectedOption;
+  final List<String> options;
+  final Rx<List<String>> selectedOptionList;
+  final RxString selectedOption;
 
   @override
   Widget build(BuildContext context) {

@@ -18,7 +18,7 @@ class ReportsAndEmailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var textcontroller = TextEditingController();
+    //var textcontroller = TextEditingController();
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(

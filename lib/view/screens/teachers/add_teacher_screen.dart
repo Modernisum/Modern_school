@@ -11,7 +11,7 @@ import '../../utils/widgets/submit_button.dart';
 
 class AddTeacherScreen extends StatelessWidget {
   AddTeacherScreen({super.key, required this.controller});
-  TeachersController controller;
+  final TeachersController controller;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -168,7 +168,7 @@ class AddTeacherScreen extends StatelessWidget {
 
 class TeacherInfo extends StatelessWidget {
   TeacherInfo({super.key, required this.teacherInfo});
-  TeachersController teacherInfo;
+  final TeachersController teacherInfo;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -288,7 +288,7 @@ class TeacherInfo extends StatelessWidget {
 
 class TeacherStudyInfo extends StatelessWidget {
   TeacherStudyInfo({super.key, required this.teacherInfo});
-  TeachersController teacherInfo;
+  final TeachersController teacherInfo;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

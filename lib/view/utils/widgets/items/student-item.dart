@@ -14,9 +14,9 @@ class StudentItem extends StatelessWidget {
     this.check = false,
   });
 
-  Student student;
-  StudentsController controller;
-  bool check;
+  final Student student;
+  final StudentsController controller;
+  final bool check;
   @override
   Widget build(BuildContext context) {
     return !check

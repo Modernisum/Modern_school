@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modernschool/view/screens/main-screen/main-screen.dart';
 
 import '../grades/grades_api.dart';
 import '../schedules/schedulesapi.dart';
@@ -126,8 +125,8 @@ class AnnouncementsController extends GetxController {
   getnewAnnouncements(List<String> seclasses) async {
     print('getting new Announcements ...');
     studentslist.value = await AnnouncememtsApi.getNewAnnouncements(
-        selectedclassroomOptionList.value);
-    print(studentslist.value);
+        selectedclassroomOptionList);
+    print(studentslist);
     print('Done!');
     update();
   }
@@ -137,7 +136,7 @@ class AnnouncementsController extends GetxController {
     gradesOptions.value = await GradeApi.getGradesOptions();
     items4.value = await GradeApi.getGradesOptions();
     dropdownvalue4.value = items4[0];
-    print(items4.value);
+    print(items4);
     print('Done!');
     update();
   }
@@ -148,7 +147,7 @@ class AnnouncementsController extends GetxController {
     classroomOptions.value =
         await SchedulesApi.getClassroomOptions(dropdownvalue4);
     items2.value = await SchedulesApi.getClassroomOptions(dropdownvalue4);
-    if (items2.value.isEmpty) {
+    if (items2.isEmpty) {
     } else {
       dropdownvalue2.value = items2[0];
     }
@@ -159,14 +158,14 @@ class AnnouncementsController extends GetxController {
   getmyAnnouncements() async {
     print('getting new Announcements ...');
     publiclist.value = await AnnouncememtsApi.getAnnouncements();
-    print(publiclist.value);
+    print(publiclist.toList());
     print('Done!');
   }
 
   getmyAnnouncementsTe() async {
     print('getting new TAnnouncements ...');
     teacherslist.value = await AnnouncememtsApi.getTeachersAnnouncements();
-    print(teacherslist.value);
+    print(teacherslist);
     print('Done!');
     update();
   }
@@ -174,7 +173,7 @@ class AnnouncementsController extends GetxController {
   getmyAnnouncementsSt() async {
     print('getting new SAnnouncements ...');
     studentslist.value = await AnnouncememtsApi.getStudentsAnnouncements();
-    print(studentslist.value);
+    print(studentslist);
     print('Done!');
     update();
   }

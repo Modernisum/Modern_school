@@ -10,7 +10,7 @@ import '../../../../models/classes.dart';
 class ClassItem extends StatelessWidget {
   ClassItem({super.key, required this.gClass});
 
-  Classes gClass;
+  final Classes gClass;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

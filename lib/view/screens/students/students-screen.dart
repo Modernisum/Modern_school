@@ -19,7 +19,7 @@ class StudentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var textcontroller = TextEditingController();
+    //var textcontroller = TextEditingController();
     return SafeArea(
       child: GetBuilder<StudentsController>(
           init: StudentsController(),
@@ -63,7 +63,7 @@ class StudentsScreen extends StatelessWidget {
                                           .toString(),
                                     );
                                     studentsController.getmyStudents();
-                                    studentsController.refresh();
+                                    studentsController.update();
                                   },
                                   hintText: "Enter first name",
                                   editTextController:
@@ -105,7 +105,7 @@ class StudentsScreen extends StatelessWidget {
                                             .toString(),
                                       );
                                       studentsController.getmyStudents();
-                                      studentsController.refresh();
+                                      studentsController.update();
                                     },
                                     hintText: "Enter first name",
                                     editTextController:
@@ -148,7 +148,7 @@ class StudentsScreen extends StatelessWidget {
                                             .toString(),
                                       );
                                       studentsController.getmyStudents();
-                                      studentsController.refresh();
+                                      studentsController.update();
                                     },
                                     hintText: "Enter first name",
                                     editTextController:
@@ -371,7 +371,7 @@ class StudentsScreen extends StatelessWidget {
                                                               height: 32,
                                                             ),
                                                             itemCount: c.mystudents
-                                                                .value.length,
+                                                                .length,
                                                             itemBuilder:
                                                                 (BuildContext
                                                                         context,
@@ -379,7 +379,7 @@ class StudentsScreen extends StatelessWidget {
                                                               return StudentItem(
                                                                 student: c
                                                                     .mystudents
-                                                                    .value[index],
+                                                                    [index],
                                                                 controller:
                                                                     studentsController,
                                                               );

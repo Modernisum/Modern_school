@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:modernschool/view/bindings/login-binding.dart';
 import 'package:modernschool/view/routes/app_pages.dart';
 import 'package:modernschool/view/screens/announcements/announcements-controller.dart';
 import 'package:modernschool/view/screens/classes/classes-controller.dart';

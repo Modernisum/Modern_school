@@ -123,7 +123,7 @@ class SchedulesController extends GetxController {
     teachersOptions.value = await ClassesApi.getTeachersOptions();
     items5.value = await await ClassesApi.getTeachersOptions();
     dropdownValue5.value = items5[0]; // Changed to camelCase
-    print(items4.value);
+    print(items4);
     print('Done!');
     update();
   }
@@ -133,7 +133,7 @@ class SchedulesController extends GetxController {
     gradesOptions.value = await GradeApi.getGradesOptions();
     items4.value = await GradeApi.getGradesOptions();
     dropdownValue4.value = items4[0]; // Changed to camelCase
-    print(items4.value);
+    print(items4);
     print('Done!');
     update();
   }
@@ -145,7 +145,7 @@ class SchedulesController extends GetxController {
     classroomOptions.value =
         await SchedulesApi.getClassroomOptions(dropdownValue4);
     items2.value = await SchedulesApi.getClassroomOptions(dropdownValue4);
-    if (items2.value.isEmpty) {
+    if (items2.isEmpty) {
     } else {
       dropdownValue2.value = items2[0]; // Changed to camelCase
     }
@@ -157,7 +157,7 @@ class SchedulesController extends GetxController {
     // Changed to camelCase
     print('getting new isTeacher ...');
     weeklyList.value = await SchedulesApi.getmyWeekly(); // Changed to camelCase
-    print(weeklyList.value); // Changed to camelCase
+    print(weeklyList.toList()); // Changed to camelCase
     print('Done!');
   }
 
@@ -165,7 +165,7 @@ class SchedulesController extends GetxController {
     // Changed to camelCase
     print('getting new isStudent ...');
     examList.value = await SchedulesApi.getmyExam(); // Changed to camelCase
-    print(examList.value); // Changed to camelCase
+    print(examList); // Changed to camelCase
     print('Done!');
     update();
   }

@@ -6,8 +6,8 @@ import 'package:modernschool/view/utils/constants/font_style.dart';
 import '../constants/responsive.dart';
 
 class DeleteButton extends StatelessWidget {
-  String text;
-  Function press;
+  final String text;
+  final Function press;
 
   DeleteButton({
     super.key,

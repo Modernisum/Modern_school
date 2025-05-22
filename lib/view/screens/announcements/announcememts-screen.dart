@@ -17,7 +17,7 @@ class AnnouncementsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<AnnouncementsController>();
     Size size = MediaQuery.of(context).size;
-    var textcontroller = TextEditingController();
+    //var textcontroller = TextEditingController();
     return SafeArea(
       key: const ValueKey('announcements-safe-area'),
       child: SingleChildScrollView(
@@ -325,7 +325,7 @@ class AnnouncementsScreen extends StatelessWidget {
                                                               icon: Icon(Icons
                                                                   .keyboard_arrow_down),
                                                               items: c
-                                                                  .items4.value
+                                                                  .items4
                                                                   .map((String
                                                                       items) {
                                                                 return DropdownMenuItem(
@@ -390,7 +390,7 @@ class AnnouncementsScreen extends StatelessWidget {
                                                               icon: Icon(Icons
                                                                   .keyboard_arrow_down),
                                                               items: c
-                                                                  .items2.value
+                                                                  .items2
                                                                   .map((String
                                                                       items) {
                                                                 return DropdownMenuItem(

@@ -12,9 +12,9 @@ class AddButton extends StatelessWidget {
     required this.text,
     this.color = purple,
   });
-  String text;
-  Color color;
-  Function press;
+  final String text;
+  final Color color;
+  final Function press;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

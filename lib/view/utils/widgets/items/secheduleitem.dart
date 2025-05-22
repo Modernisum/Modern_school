@@ -11,7 +11,7 @@ import '../../../screens/schedules/schedules-controller.dart';
 class ScheduleItem extends StatelessWidget {
   ScheduleItem({super.key, required this.schedule});
 
-  Schedule schedule;
+  final Schedule schedule;
   final DateFormat _dateFormat = DateFormat('y-MM-d');
   @override
   Widget build(BuildContext context) {

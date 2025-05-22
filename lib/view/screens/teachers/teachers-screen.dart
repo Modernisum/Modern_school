@@ -15,7 +15,6 @@ class TeachersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var textcontroller = TextEditingController();
     return SafeArea(
       child: GetBuilder<TeachersController>(
           init: TeachersController(),
@@ -98,8 +97,7 @@ class TeachersScreen extends StatelessWidget {
                                                                 SizedBox(
                                                           height: 32,
                                                         ),
-                                                        itemCount: c.myteachers
-                                                            .value.length,
+                                                        itemCount: c.myteachers.length,
                                                         itemBuilder:
                                                             (BuildContext
                                                                     context,
@@ -107,7 +105,7 @@ class TeachersScreen extends StatelessWidget {
                                                           return TeacherItem(
                                                             teacher: c
                                                                 .myteachers
-                                                                .value[index],
+                                                                [index],
                                                             controller:
                                                                 teachersController,
                                                           );

@@ -81,7 +81,7 @@ class StudentApi {
               data); // if given student detail match for exist student detail then update new detail for student
     } else {
       try {
-        UserCredential userCredential = await FirebaseAuth.instance
+        await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {

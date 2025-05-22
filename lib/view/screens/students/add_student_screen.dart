@@ -12,7 +12,7 @@ import '../../utils/widgets/submit_button.dart';
 
 class AddStudentScreen extends StatelessWidget {
   AddStudentScreen({super.key, required this.controller});
-  StudentsController controller;
+  final StudentsController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +170,7 @@ class AddStudentScreen extends StatelessWidget {
 
 class StudentInfo extends StatelessWidget {
   StudentInfo({super.key, required this.studentInfo});
-  StudentsController studentInfo;
+  final StudentsController studentInfo;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -281,7 +281,7 @@ class StudentInfo extends StatelessWidget {
 
 class StudentParentInfo extends StatelessWidget {
   StudentParentInfo({super.key, required this.studentInfo});
-  StudentsController studentInfo;
+  final StudentsController studentInfo;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

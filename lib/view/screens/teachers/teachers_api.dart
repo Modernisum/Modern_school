@@ -10,7 +10,7 @@ class TeachersApi {
     String phone,
     String study,
     String specialization,
-    String university,
+    String university,   
     String graduateYea,
     String password,
   ) async {
@@ -54,7 +54,7 @@ class TeachersApi {
           .update(data);
     } else {
       try {
-        UserCredential userCredential = await FirebaseAuth.instance
+        await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {

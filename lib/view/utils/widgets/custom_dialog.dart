@@ -11,9 +11,9 @@ class CustomDialog extends StatelessWidget {
     this.onChange,
     this.validate,
   });
-  String? Function(String?)? validate;
-  Function? onChange;
-  TextEditingController controller;
+  final String? Function(String?)? validate;
+  final Function? onChange;
+  final TextEditingController controller;
   dialogContent(BuildContext context) {
     return Container(
       height: 50,

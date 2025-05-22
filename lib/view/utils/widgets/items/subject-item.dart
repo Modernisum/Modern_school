@@ -11,7 +11,7 @@ import '../../../screens/schedules/schedules-controller.dart';
 class SubjectItem extends StatelessWidget {
   SubjectItem({super.key, required this.subject});
 
-  Subject subject;
+   final Subject subject;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -125,7 +125,7 @@ class SubjectItem extends StatelessWidget {
                                             value: c.dropdownValue5.value,
                                             icon:
                                                 Icon(Icons.keyboard_arrow_down),
-                                            items: c.items5.value
+                                            items: c.items5
                                                 .map((String items) {
                                               return DropdownMenuItem(
                                                   value: items,
@@ -175,7 +175,7 @@ class SubjectItem extends StatelessWidget {
                                                       .value = '';
                                                   for (var element in c
                                                       .selectedClassesOptionList
-                                                      .value) {
+                                                      .toList()) {
                                                     c.selectedClassesOption
                                                             .value =
                                                         '${c.selectedClassesOption.value} $element';
@@ -183,11 +183,11 @@ class SubjectItem extends StatelessWidget {
 
                                                   print(c
                                                       .selectedClassesOptionList
-                                                      .value);
+                                                      .toList());
                                                 },
                                                 selectedValues: c
                                                     .selectedClassesOptionList
-                                                    .value,
+                                                    .toList(),
                                               ),
                                             );
                                           }));
@@ -209,7 +209,7 @@ class SubjectItem extends StatelessWidget {
                                                   c.addTeacher(
                                                       c.dropdownValue5.value,
                                                       c.selectedClassesOptionList
-                                                          .value,
+                                                          .toList(),
                                                       subject.grade,
                                                       subject.id,
                                                       subject.name);

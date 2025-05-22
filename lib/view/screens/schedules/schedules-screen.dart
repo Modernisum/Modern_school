@@ -332,7 +332,6 @@ class SchedulesScreen extends StatelessWidget {
                                                                 icon: Icon(Icons
                                                                     .keyboard_arrow_down),
                                                                 items: c.items4
-                                                                    .value
                                                                     .map((String
                                                                         items) {
                                                                   return DropdownMenuItem(
@@ -406,9 +405,9 @@ class SchedulesScreen extends StatelessWidget {
                                                                 icon: Icon(Icons
                                                                     .keyboard_arrow_down),
                                                                 items: c.items2
-                                                                    .value
-                                                                    .map((String
-                                                                        items) {
+                                                                    .toList()
+                                                                        .map((String
+                                                                            items) {
                                                                   return DropdownMenuItem(
                                                                       value:
                                                                           items,
@@ -471,7 +470,7 @@ class SchedulesScreen extends StatelessWidget {
                                                             icon: Icon(Icons
                                                                 .keyboard_arrow_down),
                                                             items: c
-                                                                .items5.value
+                                                                .items5
                                                                 .map((String
                                                                     items) {
                                                               return DropdownMenuItem(

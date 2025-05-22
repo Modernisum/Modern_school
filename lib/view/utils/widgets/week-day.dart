@@ -12,10 +12,10 @@ class WeekDay extends StatelessWidget {
       this.onPress,
       this.isSelected = false,
       this.isActiveDay = false});
-  String text;
-  bool isSelected;
-  bool isActiveDay;
-  var onPress;
+  final String text;
+  final bool isSelected;
+  final bool isActiveDay;
+  final VoidCallback? onPress;
   @override
   Widget build(BuildContext context) {
     double radius = isSelected

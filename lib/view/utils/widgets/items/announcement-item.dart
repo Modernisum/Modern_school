@@ -11,7 +11,7 @@ import '../../../screens/announcements/announcements-controller.dart';
 class AnnouncementItem extends StatelessWidget {
   AnnouncementItem({super.key, required this.announcement});
 
-  Announcements announcement;
+  final Announcements announcement;
   final DateFormat _dateFormat = DateFormat('y-MM-d');
   @override
   Widget build(BuildContext context) {

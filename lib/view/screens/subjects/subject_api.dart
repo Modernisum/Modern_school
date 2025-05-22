@@ -29,7 +29,7 @@ class SubjectApi {
   static addsubjectapi(
       String grade, String name, List<String> selectedTeachers) async {
     List<String> allTeachersselid = [];
-    var numberofStudents = 0;
+    // Removed unused variable 'numberofStudents'
 
     print("sssssssssssssss");
     print(selectedTeachers);

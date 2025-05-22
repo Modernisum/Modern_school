@@ -13,10 +13,10 @@ class DropDownSelectingMenu extends StatelessWidget {
     required this.selectOptions,
     this.enableEdit = true,
   });
-  bool enableEdit;
-  var selectedOption;
-  var setSelectedOption;
-  List<String> selectOptions;
+  final bool enableEdit;
+  final String selectedOption;
+  final Function setSelectedOption;
+  final List<String> selectOptions;
   @override
   Widget build(BuildContext context) {
     return Container(

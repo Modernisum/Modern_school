@@ -6,8 +6,8 @@ import '../constants/responsive.dart';
 
 class CancelButton extends StatelessWidget {
   CancelButton({super.key, required this.press, this.text = 'cancel'});
-  var press;
-  String text;
+  final VoidCallback press;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

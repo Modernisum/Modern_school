@@ -12,12 +12,12 @@ class InformationField extends StatelessWidget {
       this.enableEdit = true,
       this.inputType = TextInputType.text,
       this.activeIcon = true});
-  TextEditingController textController;
-  String label;
-  IconData? icon;
-  TextInputType inputType;
-  bool enableEdit;
-  bool activeIcon;
+  final TextEditingController textController;
+  final String label;
+  final IconData? icon;
+  final TextInputType inputType;
+  final bool enableEdit;
+  final bool activeIcon;
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(

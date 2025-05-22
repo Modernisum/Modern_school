@@ -6,8 +6,8 @@ import '../constants/responsive.dart';
 
 class SubmitButton extends StatelessWidget {
   SubmitButton({super.key, required this.press, this.text = 'submit'});
-  var press;
-  String text;
+  final VoidCallback press;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

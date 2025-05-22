@@ -18,7 +18,6 @@ class DailyCheckScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var textcontroller = TextEditingController();
     {
       return SingleChildScrollView(
         child: Padding(
@@ -75,7 +74,7 @@ class DailyCheckScreen extends StatelessWidget {
                                       .toString(),
                                 );
                                 studentsController.getmyStudents();
-                                studentsController.refresh();
+                                studentsController.update();
                               },
                               hintText: "Enter first name",
                               editTextController:
@@ -186,14 +185,14 @@ class DailyCheckScreen extends StatelessWidget {
                                                       height: 32,
                                                     ),
                                                     itemCount: c.mystudents
-                                                        .value.length,
+                                                        .length,
                                                     itemBuilder:
                                                         (BuildContext context,
                                                             int index) {
                                                       return StudentItem(
                                                         check: true,
                                                         student: c.mystudents
-                                                            .value[index],
+                                                            [index],
                                                         controller:
                                                             studentsController,
                                                       );

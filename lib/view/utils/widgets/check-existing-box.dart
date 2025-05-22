@@ -3,8 +3,8 @@ import 'package:modernschool/view/utils/constants/constant.dart';
 
 class CheckExistingBox extends StatelessWidget {
   CheckExistingBox({super.key, this.value = false, this.press});
-  var value;
-  var press;
+  final bool value;
+  final VoidCallback? press;
   @override
   Widget build(BuildContext context) {
     return InkWell(

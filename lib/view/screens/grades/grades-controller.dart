@@ -16,6 +16,7 @@ class GradesController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     getmyGrades();
     getSubjectOptions();
     getgradesOptions();
@@ -47,7 +48,7 @@ class GradesController extends GetxController {
   addgrade() async {
     //Get.back();
     await GradeApi.addgradeapi(gradeNameController.text,
-        gradeFeesController.text, selectedSubjectsOptionList.value);
+        gradeFeesController.text, selectedSubjectsOptionList.toList());
         
     // Clear form fields
     gradeNameController.clear();

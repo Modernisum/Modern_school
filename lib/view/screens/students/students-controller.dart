@@ -50,6 +50,7 @@ class StudentsController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     getmyStudents();
     getgradesOptions();
   }

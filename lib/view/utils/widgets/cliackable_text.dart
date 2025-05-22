@@ -10,12 +10,12 @@ class ClicableText extends StatelessWidget {
       this.activeLine = false,
       this.lineColor = lightGray,
       this.length = 48});
-  String? text;
-  var function;
-  TextStyle? style;
-  bool activeLine;
-  Color lineColor;
-  double length;
+  final String? text;
+  final VoidCallback function;
+  final TextStyle? style;
+  final bool activeLine;
+  final Color lineColor;
+  final double length;
   @override
   Widget build(BuildContext context) {
     return !activeLine

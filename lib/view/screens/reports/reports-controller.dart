@@ -10,13 +10,14 @@ class ReportsAndEmailsController extends GetxController {
 
   @override
   void onInit() async {
+    super.onInit();
     getmyReports();
   }
 
   getmyReports() async {
     print('getting new Reports ...');
     myreporst.value = await ReportApi.getReports();
-    print(myreporst.value);
+    print(myreporst.toList());
     print('Done!');
   }
 

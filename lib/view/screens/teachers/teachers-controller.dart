@@ -31,6 +31,7 @@ class TeachersController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     getmyTeachers();
   }
 

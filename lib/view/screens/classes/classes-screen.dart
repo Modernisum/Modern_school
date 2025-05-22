@@ -16,7 +16,7 @@ class ClassesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var textcontroller = TextEditingController();
+   // var textcontroller = TextEditingController();
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
@@ -56,19 +56,19 @@ class ClassesScreen extends StatelessWidget {
                                 c.selectedGradesOptionList.value = value;
                                 c.selectedGradesOption.value = '';
                                 for (var element
-                                    in c.selectedGradesOptionList.value) {
+                                    in c.selectedGradesOptionList.toList()) {
                                   c.selectedGradesOption.value =
                                       '${c.selectedGradesOption.value} $element';
                                 }
 
                                 c.ok.value = false;
-                                if (c.selectedGradesOptionList.value.isEmpty) {
+                                if (c.selectedGradesOptionList.isEmpty) {
                                   c.ok.value = true;
                                 }
                                 c.update();
-                                print(c.selectedGradesOptionList.value);
+                                print(c.selectedGradesOptionList.toList());
                               },
-                              selectedValues: c.selectedGradesOptionList.value,
+                              selectedValues: c.selectedGradesOptionList.toList(),
                               whenEmpty: 'Grade',
                             ),
                           );
@@ -195,7 +195,7 @@ class ClassesScreen extends StatelessWidget {
                                                           .dropdownvalue.value,
                                                       icon: Icon(Icons
                                                           .keyboard_arrow_down),
-                                                      items: ccc.items.value
+                                                      items: ccc.items
                                                           .map((String items) {
                                                         return DropdownMenuItem(
                                                             value: items,
@@ -206,8 +206,7 @@ class ClassesScreen extends StatelessWidget {
                                                         ccc.changevalue(
                                                             newValue);
 
-                                                        print(ccc.dropdownvalue
-                                                            .value);
+                                                        print(ccc.dropdownvalue);
                                                       },
                                                     ),
                                                   ),
@@ -247,7 +246,7 @@ class ClassesScreen extends StatelessWidget {
                                                         .value = '';
                                                     for (var element in c
                                                         .selectedTeachersOptionList
-                                                        .value) {
+                                                        .toList()) {
                                                       c.selectedTeachersOption
                                                               .value =
                                                           '${c.selectedTeachersOption.value} $element';
@@ -256,11 +255,11 @@ class ClassesScreen extends StatelessWidget {
                                                     c.update();
                                                     print(c
                                                         .selectedTeachersOptionList
-                                                        .value);
+                                                        .toList());
                                                   },
                                                   selectedValues: c
                                                       .selectedTeachersOptionList
-                                                      .value,
+                                                      .toList(),
                                                 ),
                                               );
                                             },

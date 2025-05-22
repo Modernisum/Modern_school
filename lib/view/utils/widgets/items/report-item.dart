@@ -9,7 +9,7 @@ import '../../../../models/Reports.dart';
 
 class ReportItem extends StatelessWidget {
   ReportItem({super.key, required this.report});
-  Report report;
+  final Report report;
   final DateFormat _dateFormat = DateFormat('y-MM-d');
   @override
   Widget build(BuildContext context) {

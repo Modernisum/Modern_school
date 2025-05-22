@@ -10,7 +10,7 @@ import '../../../../models/emails.dart';
 class EmailItem extends StatelessWidget {
   EmailItem({super.key, required this.email});
 
-  Email email;
+  final Email email;
   final DateFormat _dateFormat = DateFormat('y-MM-d');
   @override
   Widget build(BuildContext context) {

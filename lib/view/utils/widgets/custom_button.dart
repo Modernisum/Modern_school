@@ -4,12 +4,12 @@ import 'package:modernschool/view/utils/constants/constant.dart';
 import 'package:modernschool/view/utils/constants/font_style.dart';
 
 class CustomButton extends StatelessWidget {
-  double height;
-  double width;
-  double radius;
-  Function press;
-  String text;
-  bool isLoading;
+  final double height;
+  final double width;
+  final double radius;
+  final Function press;
+  final String text;
+  final bool isLoading;
 
   CustomButton({
     super.key,

@@ -12,7 +12,6 @@ class ClassesApi {
         .then((value) async {
       for (var i = 0; i < value.docs.length; i++) {
         var numberofStudents = 0;
-        String docID;
         String uid = value.docs[i]['uid'];
         await FirebaseFirestore.instance
             .collection('students')
@@ -49,7 +48,6 @@ class ClassesApi {
           .then((value) async {
         for (var i = 0; i < value.docs.length; i++) {
           var numberofStudents = 0;
-          String docID;
           String uid = value.docs[i]['uid'];
           await FirebaseFirestore.instance
               .collection('students')

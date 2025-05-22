@@ -11,7 +11,7 @@ class GradeItem extends StatelessWidget {
   // GradesController controller = Get.put<GradesController>(GradesController());
   GradeItem({super.key, required this.grade});
 
-  Grade grade;
+  final Grade grade;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
